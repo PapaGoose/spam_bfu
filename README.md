@@ -1,5 +1,5 @@
 # Источники датасетов
-1)https://www.kaggle.com/uciml/sms-spam-collection-dataset
+1)https://www.kaggle.com/uciml/sms-spam-collection-dataset \n
 2)https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset
 3)https://www.kaggle.com/karthickveerakumar/spam-filter
 4)https://www.kaggle.com/mandygu/lingspam-dataset
