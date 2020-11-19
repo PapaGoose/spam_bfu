@@ -1,9 +1,14 @@
 # Источники датасетов
-1)https://www.kaggle.com/uciml/sms-spam-collection-dataset \n
+1)https://www.kaggle.com/uciml/sms-spam-collection-dataset 
+
 2)https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset
+
 3)https://www.kaggle.com/karthickveerakumar/spam-filter
+
 4)https://www.kaggle.com/mandygu/lingspam-dataset
+
 5)http://www.aueb.gr/users/ion/data/enron-spam/
+
 6)https://www.kaggle.com/shravan3273/sms-spam?select=spamraw.csv
 ### Библеотеки
 ```python
