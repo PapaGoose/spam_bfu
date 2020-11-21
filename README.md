@@ -10,6 +10,8 @@
 5)http://www.aueb.gr/users/ion/data/enron-spam/
 
 6)https://www.kaggle.com/shravan3273/sms-spam?select=spamraw.csv
+### Блок-схема кода
+![Пустой диаграммой](https://user-images.githubusercontent.com/56637198/99878714-00d52680-2c10-11eb-8da8-5c052efc8ed7.png)
 ### Библеотеки
 ```python
 import os #библеотека для использования команд ОС
