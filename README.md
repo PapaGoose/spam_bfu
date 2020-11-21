@@ -71,6 +71,7 @@ df3 = df3.drop(['subject'], axis=1).rename(columns={'message':'text', 'label':'s
 df4 = df4.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1).rename(columns={'v1':'spam', 'v2':'text'})
 df4.spam = df4.spam.map({'ham':0, 'spam':1})
 df5.rename(columns={'email':'text', 'label':'spam'}, inplace=True)
+df5.spam = df5.spam.map({'ham':0, 'spam':1})
 df6.rename(columns={'type':'spam'}, inplace=True)
 ```
 После этого соединяем в одну таблицу
@@ -85,11 +86,11 @@ df_new.to_csv('CSV_data/main_file.csv', index=False)# создаем основ�
 В дальнейшем нужно будет удалять все знаки, поэтому знаковые для нас знаки меняем на слова и цифры тоже, так как значения их не очень важны и их разнообразие будет только мешать, поэтому заменить на слово будет лучше
 ```python
 for i in tqdm(range(len(df_new))):
-    df_new.text.iloc[i] = re.sub('$', 'CURRENCY', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('\d+', 'NUMBER', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('%', 'PERCENT', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('£', 'POUND', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('¥', 'YEN', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('$', ' CURRENCY ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('\d+', ' NUMBER ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('%', ' PERCENT ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('£', ' POUND ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('¥', ' YEN ', df_new.text.iloc[i])
 ```
 И смотрим размер нанешнего датасета
 ```python
