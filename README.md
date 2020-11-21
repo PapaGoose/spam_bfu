@@ -1,26 +1,4 @@
-# Источники датасетов
-1)https://www.kaggle.com/uciml/sms-spam-collection-dataset 
-
-2)https://www.kaggle.com/ozlerhakan/spam-or-not-spam-dataset
-
-3)https://www.kaggle.com/karthickveerakumar/spam-filter
-
-4)https://www.kaggle.com/mandygu/lingspam-dataset
-
-5)http://www.aueb.gr/users/ion/data/enron-spam/
-
-6)https://www.kaggle.com/shravan3273/sms-spam?select=spamraw.csv
-### Библеотеки
-```python
-import os #библеотека для использования команд ОС
-import tarfile #библеотека для работы с .tar файлами
-import pandas as pd #библеотека для работы с датасетами
-import numpy as np #библеотека для работы с датасетами(почти все объекты из таблиц pandas являются объектами numpy)
-from tqdm import tqdm #библеотека для визуализации итераций
-import re #библеотека для регулярных выражений
-```
-### Начало обработки датасетов
-Сначала enron(http://www.aueb.gr/users/ion/data/enron-spam/), надо разархивировать папки и из текстовых файлов, хранящихся в них достать текст и разметить его.
+/), надо разархивировать папки и из текстовых файлов, хранящихся в них достать текст и разметить его.
 ```python
 for i in range(6):# разархивируем файлы
     tar = tarfile.open(f'Enron_dataset/enron{i+1}.tar.gz', 'r:gz')
