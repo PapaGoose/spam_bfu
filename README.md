@@ -11,7 +11,7 @@
 
 6)https://www.kaggle.com/shravan3273/sms-spam?select=spamraw.csv
 ### Блок-схема кода
-![Пустой диаграммой](https://user-images.githubusercontent.com/56637198/99878714-00d52680-2c10-11eb-8da8-5c052efc8ed7.png)
+![Пустой диаграммой (1)](https://user-images.githubusercontent.com/56637198/99878770-527db100-2c10-11eb-9326-ce30c20b9ba4.png)
 ### Библеотеки
 ```python
 import os #библеотека для использования команд ОС
