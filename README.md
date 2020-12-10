@@ -100,3 +100,4 @@ for i in tqdm(range(len(df_new))):
 df_new.shape
 ```
 (52213, 2)
+[На главную страницу](https://github.com/PapaGoose/spam_bfu/tree/main)
