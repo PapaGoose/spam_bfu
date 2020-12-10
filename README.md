@@ -58,3 +58,4 @@ df_new = pd.concat([df_main, df])  # соединение новыого и ос
 df_new.reset_index(drop=True, inplace=True)  # создание новых индексов
 df_new.to_csv(path_for_new_dataset, index=False)  # сохранение
 ```
+[На главную страницу](https://github.com/PapaGoose/spam_bfu/tree/main)
