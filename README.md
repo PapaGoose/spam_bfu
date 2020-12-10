@@ -202,3 +202,4 @@ but.place(relx=.5, rely=.3, anchor="c", height=100, width=300)
 # запуск бесконечной петли для работы интерфейса
 mainloop()
 ```
+[На главную страницу](https://github.com/PapaGoose/spam_bfu/tree/main)
