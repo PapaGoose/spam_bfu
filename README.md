@@ -98,3 +98,4 @@ clf.fit(X_word_average, y, eval_metric='logloss')
 # бинаризируем нашу модель и сохраняем ее
 pickle.dump(clf, open(file.pickle, 'wb'))
 ```
+[На главную страницу](https://github.com/PapaGoose/spam_bfu/tree/main)
