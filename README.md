@@ -10,6 +10,7 @@
 5)http://www.aueb.gr/users/ion/data/enron-spam/
 
 6)https://www.kaggle.com/shravan3273/sms-spam?select=spamraw.csv
+
 ### Блок-схема кода
 ![Пустой диаграммой (1)](https://user-images.githubusercontent.com/56637198/99878770-527db100-2c10-11eb-9326-ce30c20b9ba4.png)
 ### Библеотеки
@@ -46,13 +47,13 @@ for i in tqdm(range(6)):
                 text = f.read()
                 df = df.append({'text':str(text), 'spam':spam_ind}, ignore_index = True)
 ```
-Удаляем лишние знаки, которые появляются после перевода бинаризированного типа в строчный.
+Удаляю лишние знаки, которые появляются после перевода бинаризированного типа в строчный.
 ```python
 chars_to_remove = ['\\r','\\n','-','|','b\'','+','\\','/','\'','b\"','Subject:']
 
 for j in tqdm(range(len(df))):# удаляем лишние знаки
     for i in chars_to_remove:
-        df.text.iloc[j] = df.text.iloc[j].replace(i, '')
+        df.text.iloc[j] = df.text.iloc[j].replace(i, ' ')
 ```
 ```python
 df.to_csv('CSV_data/enron.csv', index=False)# переводим таблицу в csv файл
@@ -67,7 +68,7 @@ df4 = pd.read_csv('CSV_data/spam.csv', encoding='cp1251')
 df5 = pd.read_csv('CSV_data/spam_or_not_spam.csv')
 df6 = pd.read_csv('CSV_data/spamraw.csv')
 ```
-Дальше простые преобразования: меняем названия столбцов, удалем лишние
+Дальше простые преобразования: меняю названия столбцов, удаляю лишние
 ```python
 df3 = df3.drop(['subject'], axis=1).rename(columns={'message':'text', 'label':'spam'})
 df4 = df4.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1).rename(columns={'v1':'spam', 'v2':'text'})
@@ -76,7 +77,7 @@ df5.rename(columns={'email':'text', 'label':'spam'}, inplace=True)
 df5.spam = df5.spam.map({'ham':0, 'spam':1})
 df6.rename(columns={'type':'spam'}, inplace=True)
 ```
-После этого соединяем в одну таблицу
+После этого соединяю в одну таблицу
 ```python
 df_new = pd.concat([df1, df2, df3, df4, df5, df6])
 df_new.dropna(inplace=True)#удаляем строки с пустыми значениями
@@ -85,16 +86,16 @@ df_new.reset_index(drop=True, inplace=True)# переобозначаем инд
 df_new.to_csv('CSV_data/main_file.csv', index=False)# создаем основной файл из всех наших таблиц
 ```
 ### Небольшие преобразования текста
-В дальнейшем нужно будет удалять все знаки, поэтому знаковые для нас знаки меняем на слова и цифры тоже, так как значения их не очень важны и их разнообразие будет только мешать, поэтому заменить на слово будет лучше
+В дальнейшем нужно будет удалять все знаки, поэтому важные для нас знаки меняются на слова и цифры тоже, так как значения их не очень важны и их разнообразие будет только мешать, поэтому заменить на слово будет лучше
 ```python
 for i in tqdm(range(len(df_new))):
-    df_new.text.iloc[i] = re.sub('$', ' CURRENCY ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('$', ' dollars ', df_new.text.iloc[i])
     df_new.text.iloc[i] = re.sub('\d+', ' NUMBER ', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('%', ' PERCENT ', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('£', ' POUND ', df_new.text.iloc[i])
-    df_new.text.iloc[i] = re.sub('¥', ' YEN ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('%', ' percents ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('£', ' pounds ', df_new.text.iloc[i])
+    df_new.text.iloc[i] = re.sub('¥', ' yens ', df_new.text.iloc[i])
 ```
-И смотрим размер нанешнего датасета
+Размер нанешнего датасета:
 ```python
 df_new.shape
 ```
