@@ -76,9 +76,7 @@ def rename_files(dirc):  # функция переименовывает в фа
             
             
 def mail_sorter(model, wv, list_dir, 
-                spam_dir=path_do_spam_dir, 
-                ham_dir=path_to_ham_dir, 
-                path=path_to_eml_files):  # предсказывает класс для текста и перемещает файл в соответствующую папку
+                spam_dir, ham_dir, path_to_eml_files):  # предсказывает класс для текста и перемещает файл в соответствующую папку
     for file in list_dir:
         if file[-4:] == '.eml':
             text = text_extractor(path, file)
@@ -162,12 +160,46 @@ def progress(path):  # эта функция заполняет полоску �
 def start():  # функция внедренная в кнопку, начинает функции progress и sorter
     but.configure(state=DISABLED)
     # задаются процессы, которые будут выполняться параллельно
-    t1 = Thread(target=sorter, args=(path_to_eml_files, model, google_vectors,))
+    t1 = Thread(target=sorter, args=(path_to_eml_files, model, google_vectors, lbl1['text'], lbl2['text'], lbl3['text']))
     t2 = Thread(target=progress, args=(path_to_eml_files,))
     # запуск процессов
     t1.start()
     t2.start()
     but.configure(state=NORMAL)
+    
+def browse_button():  # функция выбора директории для писем
+    eml_folder_path = filedialog.askdirectory()
+    lbl1.configure(text=eml_folder_path)
+    lbl1.place(relx=.5, rely=.2, anchor="c")
+    but3.place(relx=.5, rely=.3, anchor="c")
+    but2.configure(state=DISABLED)
+
+
+def browse_button_2():  # функция выбора директории для спам писем
+    spam_folder_path = filedialog.askdirectory()
+    lbl2.configure(text=spam_folder_path)
+    lbl2.place(relx=.5, rely=.4, anchor="c")
+    but4.place(relx=.5, rely=.5, anchor="c")
+    but3.configure(state=DISABLED)
+
+
+def browse_button_3():  # функция выбора директории для не спам писем
+    ham_folder_path = filedialog.askdirectory()
+    lbl3.configure(text=ham_folder_path)
+    lbl3.place(relx=.5, rely=.6, anchor="c")
+    but5.place(relx=.5, rely=.7, anchor="c")
+    but4.configure(state=DISABLED)
+
+
+def clear_window():  # функция слудующего шага
+    lbl1.place_forget()
+    lbl2.place_forget()
+    lbl3.place_forget()
+    but2.place_forget()
+    but3.place_forget()
+    but4.place_forget()
+    but5.place_forget()
+    but.place(relx=.5, rely=.3, anchor="c", height=100, width=300)
 ```
 Код графического интерфейса.
 ```python
@@ -196,6 +228,19 @@ label_spam = Label(master=frame1, text='', style='L.TLabel')
 label_ham = Label(master=frame1, text='', style='L.TLabel')
 label_time = Label(master=frame1, text='', style='L.TLabel')
 label_empty = Label(master=frame2, text='Message folder is empty', style='L.TLabel')
+
+lbl1 = Label(root, text='', style='L.TLabel', width=70)
+lbl2 = Label(root, text='', style='L.TLabel', width=70)
+lbl3 = Label(root, text='', style='L.TLabel', width=70)
+
+but2 = Button(text='Browse directory with .eml files', command=browse_button, width=40)
+but2.place(relx=.5, rely=.1, anchor="c")
+
+but3 = Button(text='Browse directory for spam mails', command=browse_button_2, width=40)
+
+but4 = Button(text='Browse directory for ham mails', command=browse_button_3, width=40)
+
+but5 = Button(text='Next step', command=clear_window)
 
 but = Button(root, text='START', command=start, style='TButton')
 but.place(relx=.5, rely=.3, anchor="c", height=100, width=300)
